@@ -58,7 +58,7 @@ class HitBtcAPIPublic {
      * @return json
      */
     public function getSymbols() {
-        return $this->_request('symbols');
+        return $this->_request('symbol');
     }
 
     /**
