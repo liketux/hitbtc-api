@@ -93,7 +93,7 @@ class Request {
         }
 
         // curl handle (initialize if required)
-        if (is_null(self::$ch)) {
+        if ( ! is_resource( self::$ch ) ) {
             self::$ch = curl_init();
         }
 
