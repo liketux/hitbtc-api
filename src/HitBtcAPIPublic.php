@@ -87,15 +87,18 @@ class HitBtcAPIPublic {
                 return $this->_request('ticker', ($symbol ? "$symbol/" : "") . 'ticker');
             case 2:
                 $ticker = $this->_request('ticker', "ticker/" . ($symbol ? "$symbol" : ""));
-                $assocTicker = []; // TODO: implement more efficient solution
-                foreach ($ticker as $tickerData) {
-                    if (isset($tickerData['symbol'])) {
-                        $assocTicker[$tickerData['symbol']] = $tickerData;
+                if( $symbol ) {
+                    return  $ticker;
+                } else {
+                    $assocTicker = []; // TODO: implement more efficient solution
+                    foreach ($ticker as $tickerData) {
+                        if (isset($tickerData['symbol'])) {
+                            $assocTicker[$tickerData['symbol']] = $tickerData;
+                        }
                     }
+                    unset($ticker);
+                    return $assocTicker;
                 }
-                unset($ticker);
-
-                return $assocTicker;
         }
     }
 
